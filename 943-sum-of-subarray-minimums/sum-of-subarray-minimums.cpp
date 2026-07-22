@@ -2,7 +2,7 @@ class Solution {
 public:
     int sumSubarrayMins(vector<int>& arr) {
 		const int mod = 1e9 + 7;
-		long long answer = 0LL;
+		long long Answer = 0LL;
         int n = arr.size();
         vector<int>next(n, n), previous(n,-1);
         stack<int>st;
@@ -20,8 +20,8 @@ public:
 		for(int i = 0; i < n; i++){
 			int left = i - previous[i];
 			int right = next[i] - i;
-			answer += 1LL*left*right*arr[i];
+			Answer += 1LL*left*right*arr[i];
 		}
-		return answer%mod;
+		return Answer%mod;
     }
 };
