@@ -11,22 +11,21 @@
 class Solution {
 public:
     ListNode* mergeNodes(ListNode* head) {
-        ListNode* dummy = new ListNode(0);
-        ListNode* point = dummy;
-        ListNode* current = head->next;
-        int sum = 0;
-        while(current != nullptr){
-            if(current->val != 0) {
-                sum += current->val;
+        ListNode* write = head;
+        ListNode* read = write->next;
+        int sum =  0;
+        while(read != nullptr){
+            if(read->val != 0){
+                sum += read->val;
             }
             else{
-                ListNode* newnode = new ListNode(sum);
-                point->next = newnode;
-                point = point->next;
+                write = write->next;
+                write->val = sum;
                 sum = 0;
             }
-            current = current->next;
+            read = read->next;
         }
-        return dummy->next;
+        write->next = nullptr;
+        return head->next;
     }
 };
